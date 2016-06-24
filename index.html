@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Router</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style type="text/css">
+        #root{
+            padding: 5em;
+        }
+        .layout > div{
+
+            padding: 5px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        .layout > div > div
+        {
+            overflow:hidden;
+             margin-bottom: 10px;
+            border: 1px solid #ccc;
+
+        }
+        .layout > div > div.is-active{
+            border: 2px  dashed blue;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script src="/js/bundle.js"></script>
+</body>
+</html>
