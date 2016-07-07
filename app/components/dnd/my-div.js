@@ -5,28 +5,36 @@ var DragSource = ReactDnd.DragSource;
 var DropTarget = ReactDnd.DropTarget;
 var flow = require('lodash/flow');
 
-var MyForm = require('./my-form');
-
 var divSource = {
   beginDrag: function (props) {
+    console.log('Drag Item Index: ' + props.index);
     return {
-        index: props.index
+        index: props.index,
+        className: props.className
     };
   },
   endDrag(props, monitor) {
       var item = monitor.getItem();
       var dropResult = monitor.getDropResult();
-
       if (dropResult) {
-        if(item.index != dropResult.index){
-            props.swapDiv(item.index, dropResult.index);
-        }
+        props.swapDiv(item.index, dropResult.index);
       }
     }
 };
 
 var divTarget = {
+  canDrop: function (props, monitor) {
+      var item = monitor.getItem();
+      var dropResult = monitor.getDropResult();
+      if(item.index == props.index){
+        return false;
+      }else if(item.className.indexOf('12') > -1 && props.className.indexOf('12') == -1){
+        return false;
+      }
+      return true;
+  },
   drop: function (props) {
+    console.log('Drop Item Index: ' + props.index);
     return {
         index: props.index
     };
@@ -75,44 +83,53 @@ var MyDiv = React.createClass({
         cursor: 'move'
       }}>
         {(() => {
+            var className = '';
+            if(!isDragging){
+                if(isActive){
+                    className = 'active';
+                }else if(!canDrop && isOver){
+                    className = 'passive';
+                }
+            }
+
             if(this.props.type==='component1'){
                 return(
-                    <div className={isActive ? 'is-active' : ''}>
+                    <div className={className}>
                         <img src="/img/7.png"  width='100%' className="img-responsive"/>
                     </div>
                 )
             }
             if(this.props.type==='component2'){
                 return(
-                    <div className={isActive ? 'is-active' : ''} style={{height:'385px'}}>
+                    <div className={className} style={{height:'385px'}}>
                         <img src="/img/1.png" width='100%'  className="img-responsive"/>
                     </div>
                 )
             }
             if(this.props.type==='component3'){
                 return(
-                    <div className={isActive ? 'is-active' : ''} style={{height:'385px'}}>
+                    <div className={className} style={{height:'385px'}}>
                         <img src="/img/2.png" width='100%'  className="img-responsive"/>
                     </div>
                 )
             }
             if(this.props.type==='component4'){
                 return(
-                    <div className={isActive ? 'is-active' : ''} style={{height:'385px'}}>
+                    <div className={className} style={{height:'385px'}}>
                         <img src="/img/3.png" width='100%'  className="img-responsive"/>
                     </div>
                 )
             }
             if(this.props.type==='component5'){
                 return(
-                    <div className={isActive ? 'is-active' : ''} style={{height:'385px'}}>
+                    <div className={className} style={{height:'385px'}}>
                         <img src="/img/4.png" width='100%'  className="img-responsive"/>
                     </div>
                 )
             }
             if(this.props.type==='component6'){
                 return(
-                    <div className={isActive ? 'is-active' : ''}>
+                    <div className={className}>
                         <img src="/img/8.png"  width='100%' className="img-responsive"/>
                     </div>
                 )

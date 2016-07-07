@@ -20422,7 +20422,7 @@
 	                    divs[i].group = dragGroup;
 	                }
 	            }
-	            // drag: 2->1
+	            // drag: 1->2
 	            divs[dragIndex].group = dropGroup;
 	        } else if (divs[dropIndex].className.indexOf('12') > -1) {
 	            // drag: 1->2, 1->2
@@ -28502,28 +28502,36 @@
 	var DropTarget = ReactDnd.DropTarget;
 	var flow = __webpack_require__(325);
 
-	var MyForm = __webpack_require__(340);
-
 	var divSource = {
 	    beginDrag: function beginDrag(props) {
+	        console.log('Drag Item Index: ' + props.index);
 	        return {
-	            index: props.index
+	            index: props.index,
+	            className: props.className
 	        };
 	    },
 	    endDrag: function endDrag(props, monitor) {
 	        var item = monitor.getItem();
 	        var dropResult = monitor.getDropResult();
-
 	        if (dropResult) {
-	            if (item.index != dropResult.index) {
-	                props.swapDiv(item.index, dropResult.index);
-	            }
+	            props.swapDiv(item.index, dropResult.index);
 	        }
 	    }
 	};
 
 	var divTarget = {
+	    canDrop: function canDrop(props, monitor) {
+	        var item = monitor.getItem();
+	        var dropResult = monitor.getDropResult();
+	        if (item.index == props.index) {
+	            return false;
+	        } else if (item.className.indexOf('12') > -1 && props.className.indexOf('12') == -1) {
+	            return false;
+	        }
+	        return true;
+	    },
 	    drop: function drop(props) {
+	        console.log('Drop Item Index: ' + props.index);
 	        return {
 	            index: props.index
 	        };
@@ -28576,45 +28584,54 @@
 	                    cursor: 'move'
 	                } },
 	            function () {
+	                var className = '';
+	                if (!isDragging) {
+	                    if (isActive) {
+	                        className = 'active';
+	                    } else if (!canDrop && isOver) {
+	                        className = 'passive';
+	                    }
+	                }
+
 	                if (_this.props.type === 'component1') {
 	                    return React.createElement(
 	                        'div',
-	                        { className: isActive ? 'is-active' : '' },
+	                        { className: className },
 	                        React.createElement('img', { src: '/img/7.png', width: '100%', className: 'img-responsive' })
 	                    );
 	                }
 	                if (_this.props.type === 'component2') {
 	                    return React.createElement(
 	                        'div',
-	                        { className: isActive ? 'is-active' : '', style: { height: '385px' } },
+	                        { className: className, style: { height: '385px' } },
 	                        React.createElement('img', { src: '/img/1.png', width: '100%', className: 'img-responsive' })
 	                    );
 	                }
 	                if (_this.props.type === 'component3') {
 	                    return React.createElement(
 	                        'div',
-	                        { className: isActive ? 'is-active' : '', style: { height: '385px' } },
+	                        { className: className, style: { height: '385px' } },
 	                        React.createElement('img', { src: '/img/2.png', width: '100%', className: 'img-responsive' })
 	                    );
 	                }
 	                if (_this.props.type === 'component4') {
 	                    return React.createElement(
 	                        'div',
-	                        { className: isActive ? 'is-active' : '', style: { height: '385px' } },
+	                        { className: className, style: { height: '385px' } },
 	                        React.createElement('img', { src: '/img/3.png', width: '100%', className: 'img-responsive' })
 	                    );
 	                }
 	                if (_this.props.type === 'component5') {
 	                    return React.createElement(
 	                        'div',
-	                        { className: isActive ? 'is-active' : '', style: { height: '385px' } },
+	                        { className: className, style: { height: '385px' } },
 	                        React.createElement('img', { src: '/img/4.png', width: '100%', className: 'img-responsive' })
 	                    );
 	                }
 	                if (_this.props.type === 'component6') {
 	                    return React.createElement(
 	                        'div',
-	                        { className: isActive ? 'is-active' : '' },
+	                        { className: className },
 	                        React.createElement('img', { src: '/img/8.png', width: '100%', className: 'img-responsive' })
 	                    );
 	                }
@@ -29184,160 +29201,6 @@
 	}
 
 	module.exports = copyArray;
-
-
-/***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var linkState = __webpack_require__(341);
-	var myFormData;
-
-	var MyForm = React.createClass({
-	    displayName: 'MyForm',
-
-	    getInitialState: function getInitialState() {
-	        if (myFormData) {
-	            return { user: myFormData };
-	        } else {
-	            return {
-	                user: {
-	                    name: '',
-	                    email: '',
-	                    phone: ''
-	                }
-	            };
-	        }
-	    },
-	    render: function render() {
-	        myFormData = this.state.user;
-	        return React.createElement(
-	            'form',
-	            null,
-	            React.createElement(
-	                'fieldset',
-	                null,
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        { htmlFor: 'fullname' },
-	                        'Name'
-	                    ),
-	                    React.createElement('input', { type: 'text', className: 'form-control', id: 'fullname', placeholder: 'Enter name', valueLink: linkState(this, 'user.name') })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        { htmlFor: 'email' },
-	                        'Email'
-	                    ),
-	                    React.createElement('input', { type: 'text', className: 'form-control', id: 'email', placeholder: 'Enter email', valueLink: linkState(this, 'user.email') })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        { htmlFor: 'phone' },
-	                        'Phone'
-	                    ),
-	                    React.createElement('input', { type: 'text', className: 'form-control', id: 'phone', placeholder: 'Enter phone', valueLink: linkState(this, 'user.phone') })
-	                )
-	            ),
-	            React.createElement(
-	                'button',
-	                { className: 'btn btn-success' },
-	                'Submit'
-	            )
-	        );
-	    }
-	});
-
-	module.exports = MyForm;
-
-/***/ },
-/* 341 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getIn = __webpack_require__(342);
-	var updateIn = __webpack_require__(343);
-
-	/**
-	 * Extracted the linkedState implementation to its own function (instead of a mixin)
-	 *
-	 * @params {ReactElement} ctx The component's `this`
-	 * @params {str} path State key to be updated
-	 * @return {object}
-	 */
-	module.exports = function linkState(ctx, path) {
-	  return {
-	    value: getIn(ctx.state, path),
-
-	    requestChange: function setPartialState(value) {
-	      ctx.setState(updateIn(
-	        ctx.state,
-	        path,
-	        value
-	      ));
-	    }
-	  };
-	}
-
-
-/***/ },
-/* 342 */
-/***/ function(module, exports) {
-
-	/**
-	 * Originally from:
-	 * https://github.com/tungd/react-catalyst/blob/master/src/catalyst/LinkedStateMixin.js
-	 *
-	 * @param {object}
-	 * @param {string}
-	 * @return {object}
-	 */
-	module.exports = function getIn(obj, path) {
-	  var stack = path.split('.');
-
-	  while ( stack.length ) {
-	    obj = obj[stack.shift()];
-	  }
-
-	  return obj;
-	}
-
-
-/***/ },
-/* 343 */
-/***/ function(module, exports) {
-
-	/**
-	 * Originally from:
-	 * https://github.com/tungd/react-catalyst/blob/master/src/catalyst/LinkedStateMixin.js
-	 *
-	 * @param {object}
-	 * @param {string}
-	 * @param {any}
-	 * @return {object}
-	 */
-	module.exports = function updateIn(obj, path, value) {
-	  var current = obj;
-	  var stack = path.split('.');
-
-	  while ( stack.length > 1 ) {
-	    current = current[stack.shift()];
-	  }
-	  current[stack.shift()] = value;
-
-	  return obj;
-	}
 
 
 /***/ }

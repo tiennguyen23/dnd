@@ -50,7 +50,7 @@ var Container = React.createClass({
                     divs[i].group = dragGroup;
                 }
             }
-            // drag: 2->1
+            // drag: 1->2
             divs[dragIndex].group = dropGroup;
         }else if(divs[dropIndex].className.indexOf('12') > -1){
             // drag: 1->2, 1->2

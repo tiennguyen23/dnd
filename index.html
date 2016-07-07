@@ -9,7 +9,6 @@
             padding: 5em;
         }
         .layout > div{
-
             padding: 5px;
             -webkit-transition: all 0.3s ease;
             -moz-transition: all 0.3s ease;
@@ -20,12 +19,14 @@
         .layout > div > div
         {
             overflow:hidden;
-             margin-bottom: 10px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
-
         }
-        .layout > div > div.is-active{
-            border: 2px  dashed blue;
+        .layout > div > div.active{
+            border: 2px dashed #27ae60;
+        }
+        .layout > div > div.passive{
+            border: 2px dashed #c0392b;
         }
     </style>
 </head>
