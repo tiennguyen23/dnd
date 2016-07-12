@@ -56,7 +56,6 @@ function collectDrop(connect, monitor) {
   }
 }
 
-
 var MyDiv = React.createClass({
   propTypes: {
     connectDragSource: PropTypes.func.isRequired,
