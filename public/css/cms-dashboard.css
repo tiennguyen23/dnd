@@ -217,7 +217,6 @@ body
 
 
 
-
 .main-content .highlight {
   border: 1px dashed #ccc;
   background-color: #ccc;
@@ -228,6 +227,10 @@ body
   outline: 2px dashed #ccc;
 }
 
-.main-content .no-choose {
+.item-moduleCategorie .choose {
+    background: #ccc;
+}
 
+.box__input-addWidget.choose {
+  background: #cccc;
 }
