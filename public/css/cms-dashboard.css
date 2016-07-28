@@ -1,0 +1,233 @@
+
+
+body
+{
+  overflow-x:hidden;
+}
+.dashTools {
+    text-align: right;
+}
+.box__input-addWidget {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    min-height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.moduleCategories {
+    position: absolute;
+    width: 150px;
+    right: 0;
+    top: 100px;
+    font-size: 13px;
+    font-family: "utmavo";
+}
+.item-moduleCategorie h3 {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+.item-moduleCategorie .component {
+    padding: 15px 5px;
+    min-width: 150px;
+    border: 1px solid #e4e4e4;
+    margin-bottom: 5px;
+    border-radius: 4px 0 0 4px;
+    color: #999999;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 13px;
+    background-color: #fff;
+}
+
+.main-content {
+    margin-right: 150px;
+}
+.dashboard-new-layout {
+    margin-top: 15px;
+}
+.dashboard-new-layout .page-header {
+    font-size: 24px;
+    font-weight: normal;
+}
+.dashboard-new-layout #page-title {
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    padding-top: 15px;
+}
+.dashboard-new-layout .widget-heading {
+    border-bottom: 1px solid #494949;
+}
+.dashboard-new-layout .widget-title {
+    font-size: 16px;
+    color: #000;
+    font-family: "utmavo";
+}
+.dashboard-new-layout .widget-content {
+    min-height: 200px;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+}
+.dashboard-new-layout .widget-control .fa-cog {
+    font-size: 16px;
+}
+.dashboard-new-layout .widget-control {
+    padding-right: 0;
+}
+.wpcom-site {
+    overflow-x: hidden;
+}
+.main-content {
+    transition: all 0.3s ease;
+}
+.main-content.isOpenTool {
+    margin-right: 150px;
+}
+.dashTools {
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.dashTools a {
+    color: #999999;
+    display: inline-block;
+}
+.dashTools a.isActive {
+    color: #fc3b6f;
+}
+.dashTools a:hover {
+    color: #fc3b6f;
+}
+.box__input-addWidget {
+    outline: 2px dashed #f2f2f2;
+    outline-offset: -10px;
+    background-color: #fff;
+    min-height: 100px;
+    line-height: 100px;
+    text-align: center;
+    color: #999;
+}
+.moduleCategories {
+    position: absolute;
+    width: 150px;
+    right: -150px;
+    top: 118px;
+    font-size: 13px;
+    font-family: "utmavo";
+    background: #fff;
+    transition: all 0.3s ease;
+}
+.moduleCategories.isOpenTool {
+    right: 0;
+}
+.item-moduleCategorie h3 {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+.item-moduleCategorie button {
+    padding: 15px 5px;
+    min-width: 150px;
+    border: 1px solid #e4e4e4;
+    margin-bottom: 5px;
+    border-radius: 4px 0 0 4px;
+    color: #999999;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+.item-moduleCategorie button:hover {
+    background: #f2f2f2;
+    border-color: #e4e4e4;
+    color: #575757;
+}
+.dashboard-new-layout .widget
+{
+  margin-bottom:0;
+  padding-bottom:0;
+}
+
+
+/*________________________________________________________________________________________________*/
+
+
+.row.point-bottom{
+  height: 20px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+    outline-offset: -3px;
+    border-radius: 4;
+    margin-left: 0;
+    margin-right:0;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+
+
+}
+
+
+.main-content .point-focus {
+   position: absolute;
+   height: 100%;
+   width: 15px;
+   background: #000;
+   height: calc(100% - 6px);
+   top: 6px;
+}
+
+.main-content .point-focus-begin {
+   position: absolute;
+   height: 100%;
+   width: 15px;
+   height: calc(100% - 6px);
+   top: 6px;
+   left: 0;
+   z-index: 9999;
+}
+
+.main-content .point-focus-end {
+   position: absolute;
+   height: 100%;
+   width: 15px;
+   height: calc(100% - 6px);
+   top: 6px;
+   right: 0;
+}
+
+.main-content .point-focus-end-col {
+   position: absolute;
+   height: 100%;
+   width: 15px;
+   height: calc(100% - 6px);
+   top: 6px;
+   margin-left: -8px;
+   z-index: 9999;
+}
+
+.main-content .row{
+  position: relative;
+}
+
+
+
+
+
+.main-content .highlight {
+  border: 1px dashed #ccc;
+  background-color: #ccc;
+}
+
+.main-content .choose {
+  background: #dcedf6;
+  outline: 2px dashed #ccc;
+}
+
+.main-content .no-choose {
+
+}
